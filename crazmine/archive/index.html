@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Difference Detective Gallery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="gallery-container">
+    <h1>Crazy Miner Crush – Screenshot Gallery</h1>
+    <div class="gallery">
+      <button id="prev">&#10094;</button>
+      <img id="gallery-image" src="images/img1.jpg" alt="Screenshot">
+      <button id="next">&#10095;</button>
+    </div>
+    <p id="counter">1 / 6</p>
+  </div>
+
+  <script>
+    const images = [
+      "images/img1.jpg",
+      "images/img2.jpg",
+      "images/img3.jpg",
+      "images/img4.jpg",
+      "images/img5.jpg",
+      "images/img6.jpg",
+    ];
+
+    let current = 0;
+    const imgElement = document.getElementById("gallery-image");
+    const counter = document.getElementById("counter");
+
+    function updateImage() {
+      imgElement.src = images[current];
+      counter.textContent = `${current + 1} / ${images.length}`;
+    }
+
+    document.getElementById("prev").addEventListener("click", () => {
+      current = (current - 1 + images.length) % images.length;
+      updateImage();
+    });
+
+    document.getElementById("next").addEventListener("click", () => {
+      current = (current + 1) % images.length;
+      updateImage();
+    });
+  </script>
+</body>
+</html>
